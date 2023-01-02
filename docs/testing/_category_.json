@@ -1,0 +1,8 @@
+{
+  "label": "Testing",
+  "position": 5,
+  "link": {
+    "type": "generated-index",
+    "description": "Now that you've built your Lambda functions you're going to want to test them. But how do you go about testing these small, loosely coupled application components."
+  }
+}
