@@ -63,3 +63,5 @@ Once the dependencies are added, you now also need to update the build section. 
 That's all of the configuration, now to just add a Lambda handler.
 
 If video is more your thing, check out this video on [deploying a Spring API to AWS Lambda](https://www.youtube.com/watch?v=A1rYiHTy9Lg).
+
+[![Deploy a Spring API to Lambda title screen](https://img.youtube.com/vi/A1rYiHTy9Lg/0.jpg)](https://www.youtube.com/watch?v=A1rYiHTy9Lg)

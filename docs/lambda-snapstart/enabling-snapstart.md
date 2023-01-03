@@ -125,4 +125,8 @@ And that's it! That is all there is to enabling SnapStart for your Lambda functi
 
 If video is more your thing, check out this video on [enabling SnapStart for your Spring Boot API's](https://www.youtube.com/watch?v=2m-lNBDpvKk&list=PLCOG9xkUD90IDm9tcY-5nMK6X6g8SD-Sz&index=4).
 
+[![Deploy a Spring API to Lambda title screen](https://img.youtube.com/vi/2m-lNBDpvKk/0.jpg)](https://www.youtube.com/watch?v=2m-lNBDpvKk)
+
 Or this one, on [aliases and versions](https://www.youtube.com/watch?v=DjCwoontXM4&list=PLCOG9xkUD90IDm9tcY-5nMK6X6g8SD-Sz&index=5).
+
+[![Deploy a Spring API to Lambda title screen](https://img.youtube.com/vi/DjCwoontXM4/0.jpg)](https://www.youtube.com/watch?v=DjCwoontXM4)

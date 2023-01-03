@@ -11,3 +11,5 @@ When a request is received into your Lambda function, this snapshot is then rest
 
 If your application depends on uniqueness of state, the AWS documentation contains a deep dive into how to [handle uniqueness](https://docs.aws.amazon.com/lambda/latest/dg/snapstart-uniqueness.html). Lambda uses a single snapshot as the initial state, which is then re-used for multiple request handling execution environments.
 Uniqueness, network connections and temporary data all need to be considered for your existing applications.
+
+[![SnapStart reInvent title screen](https://img.youtube.com/vi/ZbnAithBNYY/0.jpg)](https://www.youtube.com/watch?v=ZbnAithBNYY)
