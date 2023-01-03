@@ -65,7 +65,7 @@ const config = {
           filename: "sitemap.xml",
         },
         gtag: {
-          trackingID: "G-ELBLZN8LN3",
+          trackingID: "G-FSSGF9229H",
           anonymizeIP: true,
         },
       }),
