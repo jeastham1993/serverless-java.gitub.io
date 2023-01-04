@@ -13,10 +13,9 @@ Run these tests against **deployed cloud resources**. A first pass against an em
 
 [jUnit](https://junit.org/junit5/) is used for all testing. For integration tests, it's possible to just use the same default constructor that the Lambda service will use in the cloud.
 
-```java App.java focus=28
+```java App.java focus=19
 // This is an integration test as it requires an actual AWS account.
 // It assumes that a DynamoDB table with name "tickets" exists on AWS in US-EAST-1
-// and reads AWS Credentials from ~/.aws/credentials with default profile
 @ExtendWith(SystemStubsExtension.class)
 public class TicketFunctionIntegrationTest {
 
@@ -26,64 +25,6 @@ public class TicketFunctionIntegrationTest {
     .region(Region.US_EAST_1)
     .build();
   private List<String> ticketList = new ArrayList<>();
-
-  @BeforeAll
-  public static void setup() {
-    ProfileCredentialsProvider credentialsProvider = ProfileCredentialsProvider.create("default");
-    AwsCredentials awsCredentials = credentialsProvider.resolveCredentials();
-    environmentVariables.set("AWS_ACCESS_KEY_ID", awsCredentials.accessKeyId());
-    environmentVariables.set("AWS_SECRET_ACCESS_KEY", awsCredentials.secretAccessKey());
-  }
-
-  @AfterEach
-  public void cleanup() {
-    DynamoTestUtil.deleteFromDDBTable(ddbClient, ticketList);
-    ticketList.clear();
-  }
-
-  @ParameterizedTest
-  @Event(value = "events/apigw_request_1.json", type = APIGatewayProxyRequestEvent.class)
-  public void testPutTicket(APIGatewayProxyRequestEvent event, EnvironmentVariables environmentVariables) {
-    TicketFunction function = new TicketFunction();
-    APIGatewayProxyResponseEvent response = function.handleRequest(event, null);
-    Assertions.assertNotNull(response);
-    Assertions.assertNotNull(response.getBody());
-    String uuidStr = response.getBody();
-    Assertions.assertNotNull(uuidStr);
-    ticketList.add(uuidStr.substring(1, uuidStr.length() - 1));
-    DynamoTestUtil.validateItems(ticketList, ddbClient);
-  }
-}
-
-```
-
----
-
-## Configure Credentials
-
-Before each test run, the AWS credentials are configured. In this instance, the credentials are pulled from the _`default`_ profile. Equally, the ACCESS_KEY and SECRET_KEY could be pulled directly from environment variables. In a CICD environment like GitHub Actions these keys can be stored in Secret store.
-
-```java App.java focus=14:20
-// This is an integration test as it requires an actual AWS account.
-// It assumes that a DynamoDB table with name "tickets" exists on AWS in US-EAST-1
-// and reads AWS Credentials from ~/.aws/credentials with default profile
-@ExtendWith(SystemStubsExtension.class)
-public class TicketFunctionIntegrationTest {
-
-  @SystemStub
-  private static EnvironmentVariables environmentVariables;
-  private final DynamoDbClient ddbClient = DynamoDbClient.builder()
-    .region(Region.US_EAST_1)
-    .build();
-  private List<String> ticketList = new ArrayList<>();
-
-  @BeforeAll
-  public static void setup() {
-    ProfileCredentialsProvider credentialsProvider = ProfileCredentialsProvider.create("default");
-    AwsCredentials awsCredentials = credentialsProvider.resolveCredentials();
-    environmentVariables.set("AWS_ACCESS_KEY_ID", awsCredentials.accessKeyId());
-    environmentVariables.set("AWS_SECRET_ACCESS_KEY", awsCredentials.secretAccessKey());
-  }
 
   @AfterEach
   public void cleanup() {
@@ -116,7 +57,6 @@ Fundamentally, we write tests to ensure that the code we deploy into production 
 ```java App.java focus=11:20
 // This is an integration test as it requires an actual AWS account.
 // It assumes that a DynamoDB table with name "tickets" exists on AWS in US-EAST-1
-// and reads AWS Credentials from ~/.aws/credentials with default profile
 @ExtendWith(SystemStubsExtension.class)
 public class TicketFunctionIntegrationTest {
 
@@ -147,7 +87,6 @@ Throughout the test run the created tickets are collected into a list. That list
 ```java App.java focus=7:11
 // This is an integration test as it requires an actual AWS account.
 // It assumes that a DynamoDB table with name "tickets" exists on AWS in US-EAST-1
-// and reads AWS Credentials from ~/.aws/credentials with default profile
 @ExtendWith(SystemStubsExtension.class)
 public class TicketFunctionIntegrationTest {
 
