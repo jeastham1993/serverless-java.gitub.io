@@ -13,7 +13,7 @@ Run these tests against **deployed cloud resources**. A first pass against an em
 
 [jUnit](https://junit.org/junit5/) is used for all testing. For integration tests, it's possible to just use the same default constructor that the Lambda service will use in the cloud.
 
-```java App.java focus=19
+```java App.java focus=22
 // This is an integration test as it requires an actual AWS account.
 // It assumes that a DynamoDB table with name "tickets" exists on AWS in US-EAST-1
 @ExtendWith(SystemStubsExtension.class)
